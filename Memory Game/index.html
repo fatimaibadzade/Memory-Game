@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Game </title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="hud">
+        <h1>Memory Game</h1>
+        <p class="subtitle">Find all the pairs of fruit.</p>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-label">Moves</span>
+            <span class="stat-value" id="moves">0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Time</span>
+            <span class="stat-value" id="timer">0:00</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Pairs</span>
+            <span class="stat-value" id="pairs">0/8</span>
+          </div>
+        </div>
+        <button type="button" id="restart" class="btn">New game</button>
+      </header>
+
+      <main class="board-wrap">
+        <div class="board" id="board" aria-label="Игровое поле"></div>
+      </main>
+    </div>
+
+    <div class="overlay" id="win" hidden>
+      <div class="modal" role="dialog" aria-labelledby="win-title">
+        <h2 id="win-title">You Win!</h2>
+        <p id="win-text"></p>
+        <button type="button" id="play-again" class="btn">Play again</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

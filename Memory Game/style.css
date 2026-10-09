@@ -1,0 +1,242 @@
+:root {
+  --sky: #4eb4e8;
+  --sky-dark: #2f8ec4;
+  --bg: #e8f6ff;
+  --card: #ffffff;
+  --ink: #1d3557;
+  --muted: #4a6a88;
+  --accent: #ff7a59;
+  --shadow: 0 10px 24px rgba(31, 90, 130, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100%;
+}
+
+body {
+  font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top, #ffffff 0%, var(--bg) 55%),
+    var(--bg);
+  display: flex;
+  justify-content: center;
+  padding: 24px 16px 40px;
+}
+
+.app {
+  width: min(720px, 100%);
+  display: grid;
+  gap: 22px;
+}
+
+.hud {
+  text-align: center;
+}
+
+h1 {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  letter-spacing: 0.04em;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.stats {
+  margin: 18px 0 14px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  background: white;
+  min-width: 92px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.stat-value {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.btn {
+  appearance: none;
+  border: 0;
+  background: var(--accent);
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 10px 22px;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 6px 0 #d65a3c;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 #d65a3c;
+}
+
+.board-wrap {
+  background: var(--sky);
+  border: 8px solid var(--sky-dark);
+  border-radius: 28px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding: 0;
+  padding-top: 100%;
+  perspective: 900px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.card-inner {
+  position: absolute;
+  inset: 0;
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.08);
+  transition: opacity 0.2s ease, transform 0.45s ease;
+}
+
+.card-back {
+  transform: rotateY(0deg);
+  opacity: 1;
+}
+
+.card-front {
+  transform: rotateY(180deg);
+  opacity: 0;
+}
+
+.card.is-flipped .card-back,
+.card.is-matched .card-back {
+  transform: rotateY(180deg);
+  opacity: 0;
+}
+
+.card.is-flipped .card-front,
+.card.is-matched .card-front {
+  transform: rotateY(0deg);
+  opacity: 1;
+}
+
+.card-back {
+  background:
+    repeating-linear-gradient(
+      45deg,
+      #dff4ff 0 10px,
+      #c7ebff 10px 20px
+    );
+  border: 4px solid #ffffff;
+}
+
+.card-back::after {
+  content: "?";
+  font-size: clamp(1.6rem, 6vw, 2.6rem);
+  font-weight: 800;
+  color: #2f8ec4;
+}
+
+.card-front {
+  background: var(--card);
+  transform: rotateY(180deg);
+  border: 4px solid #ffffff;
+}
+
+.card.is-matched .card-front {
+  outline: 3px solid #7be07b;
+}
+
+
+
+.fruit {
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  line-height: 1;
+  display: inline-block;
+}
+
+.card.is-locked {
+  pointer-events: none;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 48, 72, 0.45);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.overlay[hidden] {
+  display: none;
+}
+
+.modal {
+  width: min(380px, 100%);
+  background: white;
+  border-radius: 24px;
+  padding: 28px 24px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.modal p {
+  margin: 12px 0 20px;
+  color: var(--muted);
+}
+
+@media (max-width: 520px) {
+  .board-wrap {
+    padding: 10px;
+    border-width: 6px;
+  }
+
+  .board {
+    gap: 8px;
+  }
+}
